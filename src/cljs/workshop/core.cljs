@@ -15,7 +15,14 @@
 
 (defn about-page []
   [:div [:h2 "About workshop"]
-   [:div [:a {:href "#/"} "go to the home page"]]])
+   [:div [:a {:href "#/"} "go to the home page"]]
+   [:hr {}]
+   ])
+(defn sranda-page []
+ [:div [:h2 "Nejaka sranda"]
+  [:div [:a {:href "#/"} "go to the home page"]]
+  [:hr {}]
+  ])
 
 (defn current-page []
   [:div [(session/get :current-page)]])
@@ -29,6 +36,10 @@
 
 (secretary/defroute "/about" []
   (session/put! :current-page #'about-page))
+
+(secretary/defroute "/sranda" []
+  (session/put! :current-page #'sranda-page))
+
 
 ;; -------------------------
 ;; History
