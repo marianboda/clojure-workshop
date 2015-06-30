@@ -9,14 +9,17 @@
 ;; -------------------------
 ;; Views
 
-(def app-db (atom {:clicks 0}))
+(defonce app-db (atom {:clicks 0}))
 
 (defn home-page []
   [:div [:h2 "Welcome to workshop"]
    [:div [:a {:href "#/about"} "go to about page"]]
    [:section#bar.foo
     [:h3 "Clicks: " (get @app-db :clicks)]
-    [:p [:a {:on-click #(swap! app-db update :clicks + 1000)} "Do Something"]]
+    [:p
+      [:a {:on-click #(swap! app-db update :clicks + 1000)} "Do Something"]
+      [:a {:on-click #(swap! app-db assoc :clicks 0)} "RESET"]
+    ]
     ]
    ])
 
