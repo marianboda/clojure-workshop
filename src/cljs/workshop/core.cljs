@@ -9,7 +9,10 @@
 ;; -------------------------
 ;; Views
 
-(defonce app-db (atom {:clicks 0}))
+(defonce app-db
+  (atom
+    {:clicks 0
+    :todos ["nakup"]  }))
 
 (defn home-page []
   [:div [:h2 "Welcome to workshop"]
@@ -23,10 +26,16 @@
     ]
    ])
 
+(defn todo-item
+  [t]
+  [:li t])
+
 (defn about-page []
   [:div [:h2 "About workshop - naozaj???"]
    [:div [:a {:href "#/"} "go to the home page"]]
-   [:hr {}]
+   [:section.todo-list
+    [:ul (map todo-item (get @app-db :todos))]
+   ]
    ])
 (defn sranda-page []
  [:div [:h2 "Nejaka sranda"]
