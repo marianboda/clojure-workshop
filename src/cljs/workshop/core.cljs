@@ -9,9 +9,13 @@
 ;; -------------------------
 ;; Views
 
+(def app-db (atom {:clicks 0}))
+
 (defn home-page []
   [:div [:h2 "Welcome to workshop"]
-   [:div [:a {:href "#/about"} "go to about page"]]])
+   [:div [:a {:href "#/about"} "go to about page"]]
+   [:div [:h3 "Clicks: " (get @app-db :clicks)]]
+   ])
 
 (defn about-page []
   [:div [:h2 "About workshop"]
