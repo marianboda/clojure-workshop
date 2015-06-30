@@ -3,7 +3,8 @@
               [reagent.session :as session]
               [secretary.core :as secretary :include-macros true]
               [goog.events :as events]
-              [goog.history.EventType :as EventType])
+              [goog.history.EventType :as EventType]
+              [workshop.todos :as todos])
     (:import goog.History))
 
 ;; -------------------------
@@ -26,28 +27,13 @@
     ]
    ])
 
-(defn todo-item
-  [t]
-  [:li t])
-(defn todo-editor
-  []
-  (let [t (atom nil)]
-    (fn []
-      [:div.editor
-        [:input {:type :text :value @t
-          :on-change (fn [e]  (reset! t (.-value (.-target e))))}]
-        [:button {:on-click (fn [] (swap! app-db update :todos conj @t))} "ok"]
-      ]
-    )
-  )
-  )
 (defn about-page []
   [:div [:h2 "About workshop - naozaj???"]
    [:div [:a {:href "#/"} "go to the home page"]]
    [:section.todo-list
-    [:ul (map todo-item (get @app-db :todos))]
+    [:ul (map todos/todo-item (get @app-db :todos))]
    ]
-   [:p [todo-editor]]
+   [:p [todos/todo-editor app-db]]
    ])
 (defn sranda-page []
  [:div [:h2 "Nejaka sranda"]
