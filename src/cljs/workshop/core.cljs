@@ -14,7 +14,7 @@
    [:div [:a {:href "#/about"} "go to about page"]]])
 
 (defn about-page []
-  [:div [:h2 "About workshop"]
+  [:div [:h2 "About workshop - naozaj???"]
    [:div [:a {:href "#/"} "go to the home page"]]
    [:hr {}]
    ])
