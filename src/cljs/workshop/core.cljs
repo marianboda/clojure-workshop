@@ -29,13 +29,25 @@
 (defn todo-item
   [t]
   [:li t])
-
+(defn todo-editor
+  []
+  (let [t (atom nil)]
+    (fn []
+      [:div.editor
+        [:input {:type :text :value @t
+          :on-change (fn [e]  (reset! t (.-value (.-target e))))}]
+        [:button {:on-click (fn [] (swap! app-db update :todos conj @t))} "ok"]
+      ]
+    )
+  )
+  )
 (defn about-page []
   [:div [:h2 "About workshop - naozaj???"]
    [:div [:a {:href "#/"} "go to the home page"]]
    [:section.todo-list
     [:ul (map todo-item (get @app-db :todos))]
    ]
+   [:p [todo-editor]]
    ])
 (defn sranda-page []
  [:div [:h2 "Nejaka sranda"]
