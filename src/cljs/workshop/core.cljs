@@ -14,7 +14,10 @@
 (defn home-page []
   [:div [:h2 "Welcome to workshop"]
    [:div [:a {:href "#/about"} "go to about page"]]
-   [:div [:h3 "Clicks: " (get @app-db :clicks)]]
+   [:section#bar.foo
+    [:h3 "Clicks: " (get @app-db :clicks)]
+    [:p [:a {:on-click #(swap! app-db update :clicks + 1000)} "Do Something"]]
+    ]
    ])
 
 (defn about-page []
