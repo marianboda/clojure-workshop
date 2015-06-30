@@ -10,7 +10,7 @@ body {
 }
 
 h1, h2, h3 {
-  color: #000;
+  color: #026;
 }
 h1 {
   font-size: 2.5em
@@ -31,4 +31,13 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  color: @bada55
 }
